@@ -18,14 +18,15 @@ try {
 | application as an "IoC" container and router for this framework.
 |
 */
-
 $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-// $app->withFacades();
+ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 
-// $app->withEloquent();
+ $app->withFacades();
+
+ $app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
