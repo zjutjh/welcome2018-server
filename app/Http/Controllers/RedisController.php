@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\DB;
 
 class RedisController extends Controller{
@@ -11,12 +10,13 @@ class RedisController extends Controller{
         $redis = app('redis.connection');
         $students_detail = DB::table('student_id')
             ->select('id','name','id_card','student_id','class','head_teacher')
+            ->orderBy('student_id','asc')
             ->get();
         foreach ($students_detail as $value){
-            $redis->set($value->id_card,json_encode($value));
+            $json = json_encode($value);
+            $redis->set($value->id_card,$json);
+            $redis->sadd($value->class,$json);
         }
-        var_dump($redis->get("34012319980720715X"));
-        var_dump($redis->get("342426199903150621"));
     }
 }
 /**
