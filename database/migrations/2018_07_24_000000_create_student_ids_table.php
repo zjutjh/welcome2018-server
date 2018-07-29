@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStudentIdTable extends Migration{
+class CreateStudentIdsTable extends Migration{
     public function up(){
-        Schema::create('student_id', function (Blueprint $table) {
+        Schema::create('student_ids', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('姓名');
             $table->char('id_card',18)->comment('身份证号');
@@ -18,7 +18,7 @@ class CreateStudentIdTable extends Migration{
     }
     public function down()
     {
-        Schema::dropIfExists('student_id');
+        Schema::dropIfExists('student_ids');
     }
 }
 
