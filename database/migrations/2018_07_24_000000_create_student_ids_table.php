@@ -10,6 +10,7 @@ class CreateStudentIdsTable extends Migration{
             $table->increments('id');
             $table->string('name')->comment('姓名');
             $table->char('id_card',18)->comment('身份证号');
+            $table->string('hometown')->comment('生源地');
             $table->char('student_id',12)->comment('学号');
             $table->string('class')->comment('班级');
             $table->string('head_teacher')->comment('班主任');

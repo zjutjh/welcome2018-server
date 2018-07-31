@@ -15,7 +15,16 @@ class MainController extends Controller{
         if($student = $redis->get($id_card)){
             $student = json_decode($student);
             if ($student->name == $name){
-                return $this->apiReponse(200,null,$student);
+                if ($qq_groups = $redis->smembers($student->hometown)){
+                    return $this->apiReponse(200,null,['student'=>$student,'qq_groups'=>$qq_groups]);
+                }
+                elseif ($student->hometown == '浙江省'){
+                    return $this->apiReponse(200,null,['student'=>$student,'qq_groups'=>$this->getZheJiangQqGroups($student)]);
+                }
+                else{
+                    return $this->apiReponse(200,null,['student'=>$student,'qq_groups'=>$qq_groups]);
+                }
+
             }
             else{
                 return $this->apiReponse(201,'身份证与姓名不匹配',null);
@@ -86,6 +95,48 @@ class MainController extends Controller{
         }
         $roommates = $redis->smembers($location);
         return $this->apiReponse(200,null,['roommates'=>$roommates]);
+    }
+
+    public function getZheJiangQqGroups($student){
+        $redis = app('redis.connection');
+        $beginning = substr($student->id_card,0,6);
+        if (substr($beginning,0,4) == '3302'){
+            return $redis->smembers('宁波市');
+        }
+        elseif (substr($beginning,0,4) == '3302'){
+            return $redis->smembers('温州市');
+        }
+        elseif (substr($beginning,0,4) == '3304'){
+            return $redis->smembers('嘉兴市');
+        }
+        elseif (substr($beginning,0,4) == '3305'){
+            return $redis->smembers('湖州市');
+        }
+        elseif (substr($beginning,0,4) == '3306'){
+            return $redis->smembers('绍兴市');
+        }
+        elseif (substr($beginning,0,4) == '3325'){
+            return $redis->smembers('丽水地区');
+        }
+        elseif (substr($beginning,0,4) == '3307'){
+            if ($beginning == '330781'){
+                return $redis->smembers('兰溪市','金华市');
+            }
+            else{
+                return $redis->smembers('金华市');
+            }
+        }
+        elseif (substr($beginning,0,4) == '3310'){
+            if ($beginning == '331023'){
+                return $redis->smembers('天台县','台州市');
+            }
+            else{
+                return $redis->smembers('台州市');
+            }
+        }
+        else{
+            return null;
+        }
     }
 }
 
