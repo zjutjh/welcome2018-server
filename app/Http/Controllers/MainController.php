@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Request;
 
 class MainController extends Controller{
     public function searchStudentId(Request $request){
-        if($request){
+        if(!$request){
             return $this->apiReponse(201,'未接收到数据',null);
         }
         $redis = app('redis.connection');
@@ -27,7 +27,7 @@ class MainController extends Controller{
     }
 
     public function getClassmates(Request $request){
-        if($request){
+        if(!$request){
             return $this->apiReponse(201,'未接收到数据',null);
         }
         $redis = app('redis.connection');
@@ -44,7 +44,7 @@ class MainController extends Controller{
     }
 
     public function searchDormitory(Request $request){
-        if($request){
+        if(!$request){
             return $this->apiReponse(201,'未接收到数据',null);
         }
         $redis = app('redis.connection');
@@ -72,7 +72,7 @@ class MainController extends Controller{
     }
 
     public function getRoommates(Request $request){
-        if($request){
+        if(!$request){
             return $this->apiReponse(201,'未接收到数据',null);
         }
         $redis = app('redis.connection');
