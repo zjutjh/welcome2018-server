@@ -11,6 +11,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+//$router->get('/', function () use ($router) {
+//    return $router->app->version();
+//});
+$router->get('/', 'RedisController@first_save');
+$router->get('/api/main/detail', 'MainController@searchStudentId');
+$router->get('/api/main/detail/classmate', 'MainController@getclassmates');
+$router->get('/api/main/tips', 'TipsController@showTips');
