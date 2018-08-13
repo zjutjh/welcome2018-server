@@ -15,6 +15,7 @@
 //    return $router->app->version();
 //});
 $router->get('/', 'RedisController@first_save');
-$router->get('/api/main/detail', 'MainController@searchStudentId');
+$router->get('.api/main/sid','MainController@searchStudentId');
+$router->get('/api/main/detail', 'MainController@searchStudentDetail');
 $router->get('/api/main/detail/classmate', 'MainController@getclassmates');
 $router->get('/api/main/tips', 'TipsController@showTips');

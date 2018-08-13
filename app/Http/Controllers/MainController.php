@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+
 
 class MainController extends Controller
 {
@@ -15,16 +17,37 @@ class MainController extends Controller
         if ($student = $redis->get($id_card)) {
             $student = json_decode($student);
             if ($student->name == $name) {
-                if ($qq_groups = $redis->smembers($student->hometown)) {
-                    return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
-                } elseif ($student->hometown == '浙江省') {
-                    return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($this->getZheJiangQqGroups($student))]);
-                } else {
-                    return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
-                }
-
+                return $this->apiReponse(200, null, ['student' => $student]);
             } else {
                 return $this->apiReponse(201, '身份证与姓名不匹配', null);
+            }
+        } else {
+            return $this->apiReponse(201, '查无此人', null);
+        }
+    }
+
+    public function searchStudentDetail(Request $request)
+    {
+        if (!$stdcode = $request->input('stdcode')) {
+            return $this->apiReponse(201, '未绑定精小弘，请先绑定精小弘', null);
+        }
+        $redis = app('redis.connection');
+        $client = new Client();
+        $req = $client->request('POST', 'http://jxh.jh.zjut.edu.cn/stdcode/to/sid', ['stdcode' => $stdcode]);
+        $code = json_decode((string)$req->getBody())->code;
+        if ($code < 0) {
+            return $this->apiReponse(201, 'code已过期', null);
+        }
+        $student_id = json_decode((string)$req->getBody())->data->sid;
+        $id_card = json_decode($redis->get($student_id))->id_card;
+        if ($student = $redis->get($id_card)) {
+            $student = json_decode($student);
+            if ($qq_groups = $redis->smembers($student->hometown)) {
+                return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
+            } elseif ($student->hometown == '浙江省') {
+                return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($this->getZheJiangQqGroups($student))]);
+            } else {
+                return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
             }
         } else {
             return $this->apiReponse(201, '查无此人', null);
