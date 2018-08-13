@@ -11,69 +11,69 @@ class MainController extends Controller
     public function searchStudentId(Request $request)
     {
         if (!$name = $request->input('name') || !$id_card = $request->input('pass')) {
-            return $this->apiReponse(201, '未接收到数据', null);
+            return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
         if ($student = $redis->get($id_card)) {
             $student = json_decode($student);
             if ($student->name == $name) {
-                return $this->apiReponse(200, null, ['student' => $student]);
+                return $this->apiReponse(1, null, ['student' => $student]);
             } else {
-                return $this->apiReponse(201, '身份证与姓名不匹配', null);
+                return $this->apiReponse(-1, '身份证与姓名不匹配', null);
             }
         } else {
-            return $this->apiReponse(201, '查无此人', null);
+            return $this->apiReponse(-1, '查无此人', null);
         }
     }
 
     public function searchStudentDetail(Request $request)
     {
         if (!$stdcode = $request->input('stdcode')) {
-            return $this->apiReponse(201, '未绑定精小弘，请先绑定精小弘', null);
+            return $this->apiReponse(-1, '未绑定精小弘，请先绑定精小弘', null);
         }
         $redis = app('redis.connection');
         $client = new Client();
         $req = $client->request('POST', 'http://jxh.jh.zjut.edu.cn/stdcode/to/sid', ['stdcode' => $stdcode]);
         $code = json_decode((string)$req->getBody())->code;
         if ($code < 0) {
-            return $this->apiReponse(201, 'code已过期', null);
+            return $this->apiReponse(-1, 'code已过期', null);
         }
         $student_id = json_decode((string)$req->getBody())->data->sid;
         $id_card = json_decode($redis->get($student_id))->id_card;
         if ($student = $redis->get($id_card)) {
             $student = json_decode($student);
             if ($qq_groups = $redis->smembers($student->hometown)) {
-                return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
+                return $this->apiReponse(1, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
             } elseif ($student->hometown == '浙江省') {
-                return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($this->getZheJiangQqGroups($student))]);
+                return $this->apiReponse(1, null, ['student' => $student, 'qq_groups' => $this->change($this->getZheJiangQqGroups($student))]);
             } else {
-                return $this->apiReponse(200, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
+                return $this->apiReponse(1, null, ['student' => $student, 'qq_groups' => $this->change($qq_groups)]);
             }
         } else {
-            return $this->apiReponse(201, '查无此人', null);
+            return $this->apiReponse(-1, '查无此人', null);
         }
     }
 
     public function getClassmates(Request $request)
     {
         if (!$id_card = $request->get('id_card')) {
-            return $this->apiReponse(201, '未接收到数据', null);
+            return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
         if ($student = $redis->get($id_card)) {
             $student = json_decode($student);
             $class = $student->class;
         } else {
-            return $this->apiReponse(201, '查无此人', null);
+            return $this->apiReponse(-1, '查无此人', null);
         }
         $classmates = $redis->smembers($class);
-        return $this->apiReponse(200, null, ['classmates' => $this->change($classmates)]);
+        return $this->apiReponse(1, null, ['classmates' => $this->change($classmates)]);
     }
 
     public function searchDormitory(Request $request)
     {
         if (!$name = $request->get('name') || !$id_card = $request->get('pass')) {
-            return $this->apiReponse(201, '未接收到数据', null);
+            return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
 
@@ -82,33 +82,33 @@ class MainController extends Controller
             if ($student->name == $name) {
                 $student_id = $student->student_id;
             } else {
-                return $this->apiReponse(201, '身份证与姓名不匹配', null);
+                return $this->apiReponse(-1, '身份证与姓名不匹配', null);
             }
         } else {
-            return $this->apiReponse(201, '查无此人', null);
+            return $this->apiReponse(-1, '查无此人', null);
         }
         if ($dormitory = $redis->get($student_id)) {
             $dormitory = json_decode($dormitory);
-            return $this->apiReponse(200, null, $dormitory);
+            return $this->apiReponse(1, null, $dormitory);
         } else {
-            return $this->apiReponse(201, '未查到寝室信息', null);
+            return $this->apiReponse(-1, '未查到寝室信息', null);
         }
     }
 
     public function getRoommates(Request $request)
     {
         if (!$student_id = $request->get('student_id')) {
-            return $this->apiReponse(201, '未接收到数据', null);
+            return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
         if ($dormitory = $redis->get($student_id)) {
             $dormitory = json_decode($dormitory);
             $location = $dormitory->location;
         } else {
-            return $this->apiReponse(201, '查无此人', null);
+            return $this->apiReponse(-1, '查无此人', null);
         }
         $roommates = $redis->smembers($location);
-        return $this->apiReponse(200, null, ['roommates' => $roommates]);
+        return $this->apiReponse(1, null, ['roommates' => $roommates]);
     }
 
     public function change($list)
