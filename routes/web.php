@@ -15,9 +15,9 @@
 //    return $router->app->version();
 //});
 use App\Tip;
-$router->get('/index', ['middleware' => 'time'], function () {
+$router->get('/index', ['middleware' => 'time', function () {
     return view('index');
-});
+}]);
 $router->get('/', 'RedisController@first_save');
 $router->post('/api/main/sid','MainController@searchStudentId');
 $router->post('/api/main/detail', 'MainController@searchStudentDetail');
