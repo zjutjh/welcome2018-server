@@ -143,12 +143,16 @@
         }
         .tip{
             font-size: 2rem;
+            border-radius: 1rem;
+            background: rgba(255,255,255,.6);
+            margin: 0 5rem;
+            padding: 1rem;
         }
         .cr{
             text-align: center;
             color: #6585be;
             font-size: 1.75rem;
-            margin: 0;
+            margin: 2rem;
         }
     </style>
 </head>
