@@ -138,7 +138,7 @@
             width: 100%;
         }
         .tip{
-            font-size: 2rem;
+            font-size: 1.5rem;
             border-radius: 1rem;
             background: rgba(255,255,255,.6);
             margin: 0 5rem;
