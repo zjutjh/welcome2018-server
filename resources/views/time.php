@@ -177,11 +177,12 @@
             text-indent: 1.2em;
         }
 
-        .cr {
-            text-align: center;
+        .cr{
+            text-align: right;
+            padding-bottom: 2rem;
+            margin: 3rem 3rem 0;
             color: #6585be;
-            font-size: 1.75rem;
-            margin: 2rem;
+            font-size: 1.2rem;
         }
     </style>
 </head>
