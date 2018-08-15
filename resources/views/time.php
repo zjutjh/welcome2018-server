@@ -25,11 +25,16 @@
             }, !1) : f[g]("load", r, !1), f[g]("resize", r, !1), q()
         }(320, 10, 100);</script>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
         html, body {
             width: 100%;
             height: 100%;
         }
-        body{
+
+        body {
             position: absolute;
             left: 0;
             right: 0;
@@ -37,6 +42,7 @@
             bottom: 0;
             margin: 0;
         }
+
         #app {
             font-family: 'Avenir', Helvetica, Arial, sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -47,8 +53,10 @@
             height: 100%;
             /*margin-top: 60px;*/
         }
-        .content{
-            /*position: absolute;*/
+
+        .content {
+            display: flex;
+            flex-direction: column;
             box-sizing: border-box;
             padding: 1px;
             margin: 0;
@@ -58,16 +66,19 @@
             /*width: 46.875rem;*/
             background-image: linear-gradient(120deg, #5694dc 0%, #c2e9fb 90%);
         }
-        .logo{
+
+        .logo {
             margin-top: 9rem;
         }
-        .logo1{
+
+        .logo1 {
             /*position: relative;*/
             /*top: 9rem;*/
-            width:24%;
-            height:24%;
+            width: 24%;
+            height: 24%;
         }
-        .resultpage{
+
+        .resultpage {
             margin-top: 3rem;
             position: relative;
             /*top:15rem;*/
@@ -75,11 +86,12 @@
             margin-right: auto;
             height: 20%;
             width: 80%;
-            background-color:rgba(255,255,255,0.5);
-            border-radius:1.5rem;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 1.5rem;
             /*box-shadow: 0.25rem 0.25rem 1rem #888888;*/
         }
-        .logo-background{
+
+        .logo-background {
             /*margin-right: auto;
             margin-left: auto;
             height: 24rem;*/
@@ -93,22 +105,26 @@
             right: 0;
             opacity: 0.1;
         }
-        .text{
+
+        .text {
             text-align: left;
             position: relative;
-            font-size:2.1rem;
+            font-size: 2.1rem;
             line-height: 2rem;
-            color: rgb(19,63,106);
+            color: rgb(19, 63, 106);
         }
-        .text .label-item{
+
+        .text .label-item {
             display: inline-block;
             width: 12rem;
             text-align: right;
         }
-        .text-item{
+
+        .text-item {
 
         }
-        .resultbutton{
+
+        .resultbutton {
             margin-top: 5rem;
             /*position: absolute;*/
             /*left: 29.375rem;*/
@@ -121,7 +137,8 @@
             font-size: 2rem;
             font-style: normal;
         }
-        .resultbutton02{
+
+        .resultbutton02 {
             margin-top: 2rem;
             /*position: absolute;*/
             /*left: 29.375rem;*/
@@ -134,18 +151,24 @@
             font-size: 2rem;
             font-style: normal;
         }
-        .footer{
+
+        .footer {
             width: 100%;
         }
-        .tip{
+
+        .result {
+            flex: 1;
+        }
+        .tip {
             font-size: 1.5rem;
             border-radius: 1rem;
-            background: rgba(255,255,255,.6);
+            background: rgba(255, 255, 255, .6);
             margin: 0 5rem;
             margin-top: 1rem;
             padding: .1rem;
         }
-        .cr{
+
+        .cr {
             text-align: center;
             color: #6585be;
             font-size: 1.75rem;
@@ -158,17 +181,19 @@
     <div class="logo">
         <img class="logo1" src="/logo.png">
     </div>
-    <div class="resultpage">
-        <div class="schoollogo">
-            <img class="logo-background" src="/school.png">
-        </div>
-        <div class="text" style="padding-top: 2rem">
-            <p style="text-align: center;">未开放查询</p>
-            <!--<p class="text-item"><span class="label-item">姓名：</span>{{ data.student.name}}</p>-->
-            <!--<p class="text-item"><span class="label-item">学号：</span>{{ data.student.student_id}}</p>-->
-            <!--<p class="text-item"><span class="label-item">班级：</span>{{data.student.class}}</p>-->
-            <!--<p class="text-item"><span class="label-item">班主任：</span>{{data.student.head_teacher}}</p>-->
-            <!--<p class="text-item" v-if="data.qq_groups"><span class="label-item">家乡群：</span>{{data.qq_groups.qq_group}}</p>-->
+    <div class="result">
+        <div class="resultpage">
+            <div class="schoollogo">
+                <img class="logo-background" src="/school.png">
+            </div>
+            <div class="text" style="padding-top: 2rem">
+                <p style="text-align: center;">未开放查询</p>
+                <!--<p class="text-item"><span class="label-item">姓名：</span>{{ data.student.name}}</p>-->
+                <!--<p class="text-item"><span class="label-item">学号：</span>{{ data.student.student_id}}</p>-->
+                <!--<p class="text-item"><span class="label-item">班级：</span>{{data.student.class}}</p>-->
+                <!--<p class="text-item"><span class="label-item">班主任：</span>{{data.student.head_teacher}}</p>-->
+                <!--<p class="text-item" v-if="data.qq_groups"><span class="label-item">家乡群：</span>{{data.qq_groups.qq_group}}</p>-->
+            </div>
         </div>
     </div>
     <div class="footer">
