@@ -11,7 +11,7 @@ class MainController extends Controller
     public function searchStudentId(Request $request)
     {
         $name = $request->input('name');
-        $id_card = $request->input('pass');
+        $id_card = $request->input('id');
         if (!$name  || !$id_card) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }
