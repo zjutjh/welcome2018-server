@@ -10,7 +10,9 @@ class MainController extends Controller
 {
     public function searchStudentId(Request $request)
     {
-        if (!$name = $request->input('name') || !$id_card = $request->input('pass')) {
+        $name = $request->input('name');
+        $id_card = $request->input('pass');
+        if (!$name  || !$id_card) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
@@ -72,7 +74,9 @@ class MainController extends Controller
 
     public function searchDormitory(Request $request)
     {
-        if (!$name = $request->get('name') || !$id_card = $request->get('pass')) {
+        $name = $request->input('name');
+        $id_card = $request->input('pass');
+        if (!$name || !$id_card) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
