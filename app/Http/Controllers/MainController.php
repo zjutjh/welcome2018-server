@@ -35,7 +35,11 @@ class MainController extends Controller
         }
         $redis = app('redis.connection');
         $client = new Client();
-        $req = $client->request('POST', 'http://jxh.jh.zjut.edu.cn/stdcode/to/sid', ['stdcode' => $stdcode]);
+        $req = $client->request('POST', 'http://jxh.jh.zjut.edu.cn/stdcode/to/sid', [
+            'form_params' => [
+                'stdcode' => $stdcode
+            ]
+        ]);
         $code = json_decode((string)$req->getBody())->code;
         if ($code < 0) {
             return $this->apiReponse(-1, 'code已过期', null);
