@@ -15,6 +15,7 @@ class MainController extends Controller
         if (!$name  || !$id_card) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }
+        $id_card = strtoupper($id_card);
         $redis = app('redis.connection');
         if ($student = $redis->get($id_card)) {
             $student = json_decode($student);
