@@ -31,5 +31,4 @@
 <script type=text/javascript src=/static/js/vendor.caeb896f4090dd854163.js></script>
 <script type=text/javascript src=/static/js/app.f5fb37ebb1857d33824b.js></script>
 </body>
-</body>
 </html>
