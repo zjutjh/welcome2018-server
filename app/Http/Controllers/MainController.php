@@ -45,6 +45,9 @@ class MainController extends Controller
             return $this->apiReponse(-1, 'code已过期', null);
         }
         $student_id = json_decode((string)$req->getBody())->data->sid;
+        if (!isset($redis->get($student_id))) {
+            return $this->apiReponse(-1, '查无此人', null);
+        }
         $id_card = json_decode($redis->get($student_id))->id_card;
         if ($student = $redis->get($id_card)) {
             $student = json_decode($student);
