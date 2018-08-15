@@ -210,6 +210,7 @@
         <div class="tip">
             <p>小贴士</p>
             <p><?php echo $tip->content; ?></p>
+            <p class=""><a style="color: #fff;" target="_blank" href="https://jq.qq.com/?_wv=1027&k=5gH4P6Q" >可以来精弘群咨询</a></p>
 
         </div>
         <p class="cr">©浙江工业大学精弘网络</p>
