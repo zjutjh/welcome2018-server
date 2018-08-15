@@ -19,6 +19,7 @@ class RedisController extends Controller
         foreach ($students_detail as $value) {
             $json = json_encode($value);
             $redis->set($value->id_card, $json);
+            $redis->set($value->student_id, $json);
             $redis->sadd($value->class, $json);
         }
         $qq_groups = Qq_group::
