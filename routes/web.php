@@ -26,7 +26,7 @@ $router->get('/api/main/tips', 'TipsController@showTips');
 
 $router->get('time', function () {
     $tips = Tip::get();
-    $index = random_int(1, count($tips));
+    $index = random_int(0, count($tips) - 1);
    return  view('time', ['tip' => $tips[$index]]);
 //    return view('time');
 });

@@ -173,7 +173,7 @@
     <div class="footer">
         <div class="tip">
             <p>小贴士</p>
-<!--            <p>--><?php echo $tip->content; ?><!--</p>-->
+            <p><?php echo $tip->content; ?></p>
 
         </div>
         <p class="cr">©浙江工业大学精弘网络</p>

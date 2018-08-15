@@ -9,8 +9,8 @@ class TipsController extends Controller
     public function showTips()
     {
         $tips = Tip::get();
-        $index = random_int(1, count($tips));
-        return $this->apiReponse(200, null, ['tip' => $tips[$index]]);
+        $index = random_int(0, count($tips) - 1);
+        return $this->apiReponse(1, null, ['tip' => $tips[$index]]);
     }
 }
 
