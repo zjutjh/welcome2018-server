@@ -196,7 +196,7 @@
             <div class="schoollogo">
                 <img class="logo-background" src="/school.png">
             </div>
-            <div class="text" style="padding-top: 2rem">
+            <div class="text" style="padding-top: 1rem">
                 <p style="text-align: center;">未开放查询</p>
                 <!--<p class="text-item"><span class="label-item">姓名：</span>{{ data.student.name}}</p>-->
                 <!--<p class="text-item"><span class="label-item">学号：</span>{{ data.student.student_id}}</p>-->
