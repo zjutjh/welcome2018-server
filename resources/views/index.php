@@ -23,12 +23,12 @@
                 a.persisted && r()
             }, !1) : f[g]("load", r, !1), f[g]("resize", r, !1), q()
         }(320, 10, 100);</script>
-    <link href=/static/css/app.ff2bdaa798211cdc915096d5d51ca1bb.css rel=stylesheet>
+    <link href=/static/css/app.ce0722cfa332483d11f25ca7441789b6.css rel=stylesheet>
 </head>
 <body>
 <div id=app></div>
 <script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script>
 <script type=text/javascript src=/static/js/vendor.caeb896f4090dd854163.js></script>
-<script type=text/javascript src=/static/js/app.3d0c22df8356dba411ad.js></script>
+<script type=text/javascript src=/static/js/app.22c3cd11aad795c95fe1.js></script>
 </body>
 </html>
