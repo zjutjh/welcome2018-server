@@ -65,7 +65,7 @@ class MainController extends Controller
 
     public function getClassmates(Request $request)
     {
-        if (!$id_card = $request->get('id_card')) {
+        if (!$id_card = $request->input('id_card')) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
@@ -108,7 +108,7 @@ class MainController extends Controller
 
     public function getRoommates(Request $request)
     {
-        if (!$student_id = $request->get('student_id')) {
+        if (!$student_id = $request->input('student_id')) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
