@@ -135,18 +135,15 @@
             font-style: normal;
         }
         .footer{
-            position: absolute;
             width: 100%;
-            left: 0;
-            /*left: 23.4375rem;*/
-            bottom: 3rem;
         }
         .tip{
             font-size: 2rem;
             border-radius: 1rem;
             background: rgba(255,255,255,.6);
             margin: 0 5rem;
-            padding: 1rem;
+            margin-top: 1rem;
+            padding: .1rem;
         }
         .cr{
             text-align: center;
