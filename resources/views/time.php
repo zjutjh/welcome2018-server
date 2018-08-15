@@ -159,13 +159,22 @@
         .result {
             flex: 1;
         }
-        .tip {
-            font-size: 1.5rem;
-            border-radius: 1rem;
-            background: rgba(255, 255, 255, .6);
-            margin: 0 5rem;
-            margin-top: 1rem;
-            padding: .1rem;
+        .tip{
+            text-align: left;
+            font-size: 1.2rem;
+            color: #6585be;
+            margin: 0 4rem;
+            padding: 1rem;
+        }
+        .tip p {
+            margin: 0;
+        }
+
+        .tip .title {
+            margin-bottom: .4rem;
+        }
+        .tip .content {
+            text-indent: 1.2em;
         }
 
         .cr {
