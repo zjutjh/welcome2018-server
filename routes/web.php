@@ -14,8 +14,19 @@
 //$router->get('/', function () use ($router) {
 //    return $router->app->version();
 //});
+use App\Tip;
+$router->get('/index', ['middleware' => 'time'], function () {
+    return view('index');
+});
 $router->get('/', 'RedisController@first_save');
 $router->get('.api/main/sid','MainController@searchStudentId');
 $router->get('/api/main/detail', 'MainController@searchStudentDetail');
 $router->get('/api/main/detail/classmate', 'MainController@getclassmates');
 $router->get('/api/main/tips', 'TipsController@showTips');
+
+$router->get('time', function () {
+    $tips = Tip::get();
+    $index = random_int(1, count($tips));
+   return  view('time', ['tip' => $tips[$index]]);
+//    return view('time');
+});
