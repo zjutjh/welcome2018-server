@@ -19,10 +19,10 @@ $router->get('/index', ['middleware' => 'time'], function () {
     return view('index');
 });
 $router->get('/', 'RedisController@first_save');
-$router->get('.api/main/sid','MainController@searchStudentId');
-$router->get('/api/main/detail', 'MainController@searchStudentDetail');
-$router->get('/api/main/detail/classmate', 'MainController@getclassmates');
-$router->get('/api/main/tips', 'TipsController@showTips');
+$router->post('/api/main/sid','MainController@searchStudentId');
+$router->post('/api/main/detail', 'MainController@searchStudentDetail');
+$router->post('/api/main/detail/classmate', 'MainController@getclassmates');
+$router->post('/api/main/tips', 'TipsController@showTips');
 
 $router->get('time', function () {
     $tips = Tip::get();
