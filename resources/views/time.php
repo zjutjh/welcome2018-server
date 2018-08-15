@@ -74,7 +74,7 @@
             margin-left: auto;
             margin-right: auto;
             height: 20%;
-            width: 50%;
+            width: 80%;
             background-color:rgba(255,255,255,0.5);
             border-radius:1.5rem;
             /*box-shadow: 0.25rem 0.25rem 1rem #888888;*/
