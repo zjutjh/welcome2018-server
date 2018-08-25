@@ -34,12 +34,14 @@ class RedisController extends Controller
     public function second_save()
     {
         $redis = app('redis.connection');
-        $students_detail = Dormitory::
-        select('id', 'name', 'id_card', 'student_id', 'location', 'bed', 'bed_order', 'bed_longer')
+        $dormitory_detail = Dormitory::
+        select('id', 'name', 'class', 'student_id', 'location', 'bed', 'bed_order', 'bed_longer')
             ->orderBy('student_id', 'asc')
             ->get();
-        foreach ($students_detail as $value) {
+//        var_dump($dormitory_detail);
+        foreach ($dormitory_detail as $value) {
             $json = json_encode($value);
+            var_dump($json);
             $redis->set($value->student_id, $json);
             $redis->sadd($value->location, $json);
         }

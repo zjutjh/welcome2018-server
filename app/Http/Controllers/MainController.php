@@ -83,33 +83,26 @@ class MainController extends Controller
     public function searchDormitory(Request $request)
     {
         $name = $request->input('name');
-        $id_card = $request->input('pass');
-        if (!$name || !$id_card) {
-            return $this->apiReponse(-1, '未接收到数据', null);
+        $student_id = $request->input('pass');
+        if (!$name) {
+            return $this->apiReponse(-1, '请输入姓名', null);
+        }
+        if (!$student_id) {
+            return $this->apiReponse(-1, '请输入学号', null);
         }
         $redis = app('redis.connection');
-
-        if ($student = $redis->get($id_card)) {
-            $student = json_decode($student);
-            if ($student->name == $name) {
-                $student_id = $student->student_id;
-            } else {
-                return $this->apiReponse(-1, '身份证与姓名不匹配', null);
-            }
-        } else {
-            return $this->apiReponse(-1, '查无此人', null);
-        }
         if ($dormitory = $redis->get($student_id)) {
             $dormitory = json_decode($dormitory);
             return $this->apiReponse(1, null, $dormitory);
         } else {
-            return $this->apiReponse(-1, '未查到寝室信息', null);
+            return $this->apiReponse(-1, '请输入正确的学号和姓名', null);
         }
     }
 
     public function getRoommates(Request $request)
     {
-        if (!$student_id = $request->input('student_id')) {
+        $student_id = $request->input('student_id');
+        if (!$student_id) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }
         $redis = app('redis.connection');
@@ -117,10 +110,10 @@ class MainController extends Controller
             $dormitory = json_decode($dormitory);
             $location = $dormitory->location;
         } else {
-            return $this->apiReponse(-1, '查无此人', null);
+            return $this->apiReponse(-1, '请输入正确的学号', null);
         }
         $roommates = $redis->smembers($location);
-        return $this->apiReponse(1, null, ['roommates' => $roommates]);
+        return $this->apiReponse(1, null, ['roommates' => $this->change($roommates)]);
     }
 
     public function change($list)

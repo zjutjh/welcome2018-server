@@ -18,10 +18,11 @@ use App\Tip;
 $router->get('/index', ['middleware' => 'time', function () {
     return view('index');
 }]);
-$router->get('/', 'RedisController@first_save');
+$router->get('/', 'RedisController@second_save');
 $router->post('/api/main/sid','MainController@searchStudentId');
 $router->post('/api/main/detail', 'MainController@searchStudentDetail');
 $router->post('/api/main/detail/classmate', 'MainController@getclassmates');
+$router->post('/api/main/dormitory','MainController@searchDormitory');
 $router->post('/api/main/tips', 'TipsController@showTips');
 
 $router->get('time', function () {
