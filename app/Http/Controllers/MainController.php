@@ -82,8 +82,8 @@ class MainController extends Controller
 
     public function searchDormitory(Request $request)
     {
-        $name = $request->input('name');
-        $student_id = $request->input('pass');
+        $name = $request->get('name');
+        $student_id = $request->get('id');
         if (!$name) {
             return $this->apiReponse(-1, '请输入姓名', null);
         }
@@ -101,7 +101,7 @@ class MainController extends Controller
 
     public function getRoommates(Request $request)
     {
-        $student_id = $request->input('student_id');
+        $student_id = $request->input('id');
         if (!$student_id) {
             return $this->apiReponse(-1, '未接收到数据', null);
         }

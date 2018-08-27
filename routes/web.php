@@ -23,6 +23,7 @@ $router->post('/api/main/sid','MainController@searchStudentId');
 $router->post('/api/main/detail', 'MainController@searchStudentDetail');
 $router->post('/api/main/detail/classmate', 'MainController@getclassmates');
 $router->post('/api/main/dormitory','MainController@searchDormitory');
+$router->post('/api/main/dormitory/roommate','MainController@getRoommates');
 $router->post('/api/main/tips', 'TipsController@showTips');
 
 $router->get('time', function () {
