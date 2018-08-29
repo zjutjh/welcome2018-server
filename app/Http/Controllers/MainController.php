@@ -82,11 +82,7 @@ class MainController extends Controller
 
     public function searchDormitory(Request $request)
     {
-        $name = $request->get('name');
         $student_id = $request->get('id');
-        if (!$name) {
-            return $this->apiReponse(-1, '请输入姓名', null);
-        }
         if (!$student_id) {
             return $this->apiReponse(-1, '请输入学号', null);
         }
@@ -95,7 +91,7 @@ class MainController extends Controller
             $dormitory = json_decode($dormitory);
             return $this->apiReponse(1, null, $dormitory);
         } else {
-            return $this->apiReponse(-1, '请输入正确的学号和姓名', null);
+            return $this->apiReponse(-1, '请输入正确的学号', null);
         }
     }
 
