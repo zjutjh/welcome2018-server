@@ -60,13 +60,12 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
-// ]);
+ $app->middleware([
+     \App\Http\Middleware\Cors::class
+ ]);
 
  $app->routeMiddleware([
-     'time' => \App\Http\Middleware\TimeLimit::class,
-     'cors' => \App\Http\Middleware\Cors::class
+     'time' => \App\Http\Middleware\TimeLimit::class
  ]);
 
 /*
