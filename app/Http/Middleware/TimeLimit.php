@@ -16,7 +16,11 @@ class TimeLimit
     public function handle($request, Closure $next)
     {
         if (env('TIME')) {
-            return redirect('time');
+            return response()->json([
+                'code' => -1,
+                'error' => '查询未开放',
+                'data' => null
+            ]);
         }
         return $next($request);
     }
