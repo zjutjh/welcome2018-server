@@ -65,7 +65,8 @@ $app->singleton(
 // ]);
 
  $app->routeMiddleware([
-     'time' => \App\Http\Middleware\TimeLimit::class
+     'time' => \App\Http\Middleware\TimeLimit::class,
+     'cors' => \App\Http\Middleware\Cors::class
  ]);
 
 /*
@@ -79,7 +80,7 @@ $app->singleton(
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+ $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
