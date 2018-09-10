@@ -35,7 +35,7 @@ class RedisController extends Controller
     {
         $redis = app('redis.connection');
         $dormitory_detail = Dormitory::
-        select('id', 'name', 'class', 'student_id', 'location', 'number', 'bed', 'bed_order', 'bed_longer')
+        select('id', 'name', 'class', 'student_id', 'location', 'number')
             ->orderBy('student_id', 'asc')
             ->get();
         foreach ($dormitory_detail as $value) {
