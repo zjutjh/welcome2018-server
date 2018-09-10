@@ -13,6 +13,8 @@ class CreateDormitoriesTable extends Migration{
             $table->char('student_id',12)->comment('学号');
             $table->string('location')->comment('楼号');
             $table->string('number')->comment('寝室号');
+            $table->integer('bed')->comment('床号');
+            $table->integer('bed_order')->comment('是否预定床上用品 0为否 1为是');
             $table->timestamps();
         });
     }
