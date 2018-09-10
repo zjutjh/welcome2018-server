@@ -42,7 +42,7 @@ class RedisController extends Controller
             $json = json_encode($value);
             var_dump($json);
             $redis->set($value->student_id, $json);
-            $redis->sadd($value->location, $json);
+            $redis->sadd($value->number, $json);
         }
     }
 }

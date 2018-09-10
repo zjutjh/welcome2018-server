@@ -104,11 +104,11 @@ class MainController extends Controller
         $redis = app('redis.connection');
         if ($dormitory = $redis->get($student_id)) {
             $dormitory = json_decode($dormitory);
-            $location = $dormitory->location;
+            $number = $dormitory->number;
         } else {
             return $this->apiReponse(-1, '请输入正确的学号', null);
         }
-        $roommates = $redis->smembers($location);
+        $roommates = $redis->smembers($number);
         return $this->apiReponse(1, null, ['roommates' => $this->change($roommates)]);
     }
 
