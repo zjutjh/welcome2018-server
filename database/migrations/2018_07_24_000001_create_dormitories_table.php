@@ -11,8 +11,8 @@ class CreateDormitoriesTable extends Migration{
             $table->string('name')->comment('姓名');
             $table->char('class',20)->comment('班级');
             $table->char('student_id',12)->comment('学号');
-            $table->string('location')->comment('寝室位置');
-            $table->integer('number')->comment('寝室号');
+            $table->string('location')->comment('楼号');
+            $table->string('number')->comment('寝室号');
             $table->timestamps();
         });
     }
